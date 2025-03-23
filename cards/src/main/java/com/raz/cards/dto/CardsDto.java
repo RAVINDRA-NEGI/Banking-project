@@ -11,14 +11,14 @@ import lombok.Data;
 		description = "Schema to hold Cards information"
 )
 @Data
-public class cardsDto {
+public class CardsDto {
 	
 	@NotEmpty(message = "Mobile Number can not be a null or empty")
     @Pattern(regexp="(^$|[0-9]{10})",message = "Mobile Number must be 10 digits")
     @Schema(
             description = "Mobile Number of Customer", example = "4354437687"
     )
-	private String moblieNumber;
+	private String mobileNumber;
 	
 	
 	  @NotEmpty(message = "Card Number can not be a null or empty")

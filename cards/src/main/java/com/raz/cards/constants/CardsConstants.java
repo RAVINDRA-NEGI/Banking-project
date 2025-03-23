@@ -3,7 +3,7 @@ package com.raz.cards.constants;
 public final class CardsConstants {
 
     private CardsConstants() {
-        // restrict instantiation
+        
     }
 
     public static final String  CREDIT_CARD = "Credit Card";
