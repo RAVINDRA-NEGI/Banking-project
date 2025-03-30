@@ -9,7 +9,7 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.raz</groupId>
-	<artifactId>costumer</artifactId>
+	<artifactId>cards</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>costumer</name>
 	<description>Microservice for costumer</description>
@@ -101,6 +101,16 @@
 					</excludes>
 				</configuration>
 			</plugin>
+					 <plugin>
+		        <groupId>com.google.cloud.tools</groupId>
+		        <artifactId>jib-maven-plugin</artifactId>
+		        <version>3.4.5</version>
+		        <configuration>
+		          <to>
+		            <image>raznegi69/${project.artifactId}:s4</image>
+		          </to>
+		        </configuration>
+		      </plugin>
 		</plugins>
 	</build>
 
