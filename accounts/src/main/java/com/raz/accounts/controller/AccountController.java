@@ -2,6 +2,10 @@ package com.raz.accounts.controller;
 
 
 
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.core.env.Environment;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -16,6 +20,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.raz.accounts.constants.AccountsConstants;
+import com.raz.accounts.dto.AccountsContactInfoDto;
 import com.raz.accounts.dto.CustomerDto;
 import com.raz.accounts.dto.ErrorResponseDto;
 import com.raz.accounts.dto.ResponseDto;
@@ -37,11 +42,23 @@ import lombok.AllArgsConstructor;
     )
 @RestController
 @RequestMapping(path = "/api" , produces = {MediaType.APPLICATION_JSON_VALUE})
-@AllArgsConstructor
 @Validated
 public class AccountController {
 	
-	private IAccountService iAccountService;
+	private final IAccountService iAccountService;
+	
+	public AccountController(IAccountService iAccountService){
+		this.iAccountService=iAccountService;
+	}
+	
+	@Value("${build.version}")
+	private String buildVersion;
+	
+	@Autowired
+	private Environment environment;
+	
+	@Autowired
+	private AccountsContactInfoDto accountsContactInfoDto;
 	
 	@Operation(
             summary = "Create Account REST API",
@@ -172,7 +189,82 @@ public class AccountController {
 				.body(new ResponseDto(AccountsConstants.STATUS_417,AccountsConstants.MESSAGE_417_DELETE));
 		 }
 	 }
+	  
 	
+	  @Operation(
+	            summary = "Get Build information",
+	            description = "Get Build information that is deployed into accounts microservice"
+	    )
+	    @ApiResponses({
+	            @ApiResponse(
+	                    responseCode = "200",
+	                    description = "HTTP Status OK"
+	            ),
+	            @ApiResponse(
+	                    responseCode = "500",
+	                    description = "HTTP Status Internal Server Error",
+	                    content = @Content(
+	                            schema = @Schema(implementation = ErrorResponseDto.class)
+	                    )
+	            )
+	    }
+	    )
+	  @GetMapping("/build-info")
+	  public ResponseEntity<String> getBuildInfo(){
+		  return ResponseEntity.status(HttpStatus.OK)
+				  .body(buildVersion);
+	  }
+	  
+	  @Operation(
+	            summary = "Get Java version",
+	            description = "Get Java versions details that is installed  into accounts microservice"
+	    )
+	    @ApiResponses({
+	            @ApiResponse(
+	                    responseCode = "200",
+	                    description = "HTTP Status OK"
+	            ),
+	            @ApiResponse(
+	                    responseCode = "500",
+	                    description = "HTTP Status Internal Server Error",
+	                    content = @Content(
+	                            schema = @Schema(implementation = ErrorResponseDto.class)
+	                    )
+	            )
+	    }
+	    )
+	  @GetMapping("/java-version")
+	  public ResponseEntity<String> getJavaINfo(){
+		  return ResponseEntity.status(HttpStatus.OK)
+				  .body(environment.getProperty("JAVA_HOME"));
+	  }
+	  
+	  
+	  
+	  @Operation(
+	            summary = "Get Contact Info",
+	            description = "Contact INfo details that can be reached out in case of any issue"
+	    )
+	    @ApiResponses({
+	            @ApiResponse(
+	                    responseCode = "200",
+	                    description = "HTTP Status OK"
+	            ),
+	            @ApiResponse(
+	                    responseCode = "500",
+	                    description = "HTTP Status Internal Server Error",
+	                    content = @Content(
+	                            schema = @Schema(implementation = ErrorResponseDto.class)
+	                    )
+	            )
+	    }
+	    )
+	  @GetMapping("/contact-info")
+	  public ResponseEntity<AccountsContactInfoDto> getContactInfo(){
+		  return ResponseEntity.status(HttpStatus.OK)
+				  .body(accountsContactInfoDto);
+	  }
+	  
 }
 
 

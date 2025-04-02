@@ -1,0 +1,16 @@
+spring:
+  config:
+    activate:
+      on-profile: "qa"
+
+build:
+  version: "2.0"
+
+accounts:
+  message: "welcome to Bank Accounts related QA APIs"
+  contactDetails:
+    name: "Rajdeep -QA Lead"
+    email: "rajdeep@gmail.com"
+  onCallSupport:
+    - "+91 4569725846"
+    - "+91 7598416574"

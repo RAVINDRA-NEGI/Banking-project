@@ -1,0 +1,16 @@
+spring:
+  config:
+    activate:
+      on-profile: "prod" 
+
+build:
+  version: "1.0"
+
+accounts:
+  message: "Welcome to Bank Accounts related prod APIs"
+  contactDetails:
+    name: "Robin - Prod Lead"
+    email: "robin@gmail.com"
+  onCallSupport:
+    - "+91 4569755846"
+    - "+91 7566416574"

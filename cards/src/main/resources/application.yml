@@ -14,3 +14,25 @@ spring:
 
 server:
   port: 9000
+
+  config:
+    import:
+      - application-qa.yml
+      - application-prod.yml
+  profiles:
+    active:
+      - "qa"
+
+build:
+  version: "3.0"
+
+cards:
+  message: "welcome to Bank Cards related local APIs"
+  contactDetails:
+    name: "naveen negi"
+    email: "nav45@fkd.com"
+  onCallSupport:
+    - 31321321231321
+    - 54546465464544
+
+
