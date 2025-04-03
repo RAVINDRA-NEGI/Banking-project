@@ -1,4 +1,9 @@
 spring:
+   application:
+    name: "accounts"
+   profiles:
+    active:
+    - "prod"
    datasource:
     url: jdbc:mysql://localhost:3306/accounts
     username: root
@@ -12,19 +17,5 @@ spring:
       hibernate:
         dialect: org.hibernate.dialect.MySQL8Dialect 
    config:
-     import:
-       - application-qa.yml
-       - application-prod.yml
-
-
-build:
-  version: "3.0"
-
-accounts:
-  message: "welcome to Bank Accounts related local APIs"
-  contactDetails:
-    name: "raj negi"
-    email: "ravindrasinghnegi68@gmail.com"
-  onCallSupport:
-    - (+91)7579139878
-    - (+91)7817049669
+    import:
+    - "optional:configserver:http://localhost:8071/"

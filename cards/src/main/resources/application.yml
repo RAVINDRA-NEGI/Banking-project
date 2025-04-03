@@ -1,4 +1,9 @@
 spring:
+   application:
+    name: "cards"
+   profiles:
+    active:
+    - "qa"
    datasource:
     url: jdbc:mysql://localhost:3306/cards
     username: root
@@ -11,28 +16,12 @@ spring:
     properties:
       hibernate:
         dialect: org.hibernate.dialect.MySQL8Dialect
-
+   config:
+    import:
+    - "optional:configserver:http://localhost:8071/"
 server:
   port: 9000
+  
 
-  config:
-    import:
-      - application-qa.yml
-      - application-prod.yml
-  profiles:
-    active:
-      - "qa"
-
-build:
-  version: "3.0"
-
-cards:
-  message: "welcome to Bank Cards related local APIs"
-  contactDetails:
-    name: "naveen negi"
-    email: "nav45@fkd.com"
-  onCallSupport:
-    - 31321321231321
-    - 54546465464544
 
 

@@ -1,0 +1,11 @@
+build:
+  version: "3.0"
+
+accounts:
+  message: "welcome to Bank Accounts related local APIs"
+  contactDetails:
+    name: "raj negi"
+    email: "ravindrasinghnegi68@gmail.com"
+  onCallSupport:
+    - (+91)7579139878
+    - (+91)7817049669

@@ -1,15 +1,10 @@
-spring:
-  config:
-    activate:
-      on-profile: "prod"
-
 build:
   version: "1.2"
 
 accounts:
-  message: "Welcome to Bank Accounts related prod APIs"
+  message: "Testing Mode - Accounts APIs"
   contactDetails:
-    name: "Charlie - prod Lead"
+    name: "Charlie - QA Lead"
     email: "charlie.qa@example.com"
   onCallSupport:
     - "+91 7418529630"

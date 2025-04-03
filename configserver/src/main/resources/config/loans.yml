@@ -1,0 +1,11 @@
+build:
+  version: "3.0"
+
+cards:
+  message: "welcome to Bank Loans related local APIs"
+  contactDetails:
+    name: "kheem ters"
+    email: "knen45@fmd.com"
+  onCallSupport:
+    - 45125487561
+    - 7548924789
