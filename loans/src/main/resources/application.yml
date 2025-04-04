@@ -2,8 +2,7 @@ spring:
    application:
     name: "loans"
    profiles:
-    active:
-    - "prod"
+    active: "prod"
    datasource:
     url: jdbc:mysql://localhost:3306/loans
     username: root
@@ -19,8 +18,20 @@ spring:
    config:
     import:
     - "optional:configserver:http://localhost:8071/"
+   
+   rabbitmq:
+    host: "localhost"
+    port: 5672
+    username: "guest"
+    password: "guest"
+    
 server:
   port: 8090
 
 
-
+management:
+  endpoints:
+    web:
+      exposure:
+        include:
+        - "*"

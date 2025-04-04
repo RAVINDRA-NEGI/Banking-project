@@ -12,10 +12,20 @@ spring:
           #search-locations:
           #- "classpath:/config"
          git:
-          uri: https://github.com/RAVINDRA-NEGI/bank-config.git
+          uri: git@github.com:RAVINDRA-NEGI/bank-config.git
           default-label: main
           timeout: 5
           clone-on-start: true 
           force-pull: true
+  rabbitmq:
+    host: "localhost"
+    port: 5672
+    username: "guest"
+    password: "guest"
+
+encrypt:
+  key: "NtvtU5n16yWkk03a0T3rqA=="
+
+
 server:
   port: 8071

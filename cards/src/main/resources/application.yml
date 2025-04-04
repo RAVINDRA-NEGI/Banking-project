@@ -19,9 +19,19 @@ spring:
    config:
     import:
     - "optional:configserver:http://localhost:8071/"
+   rabbitmq:
+    host: "localhost"
+    username: "guest"
+    password: "guest"
+    
+    
 server:
   port: 9000
   
-
-
+management:
+  endpoints:
+    web:
+      exposure:
+        include:
+        - "*"
 
