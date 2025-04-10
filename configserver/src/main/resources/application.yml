@@ -2,17 +2,15 @@ spring:
   application:
     name: "configserver"
   profiles:
-  #active: native
     active:
-    - git
+      - git
   cloud:
     config:
       server:
-       # native:
-          #search-locations:
-          #- "classpath:/config"
-         git:
-          uri: git@github.com:RAVINDRA-NEGI/bank-config.git
+        git:
+          uri: https://github.com/RAVINDRA-NEGI/bank-config.git
+          username: RAVINDRA-NEGI
+          password: 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
           default-label: main
           timeout: 5
           clone-on-start: true 
@@ -23,9 +21,25 @@ spring:
     username: "guest"
     password: "guest"
 
+management:
+  endpoints:
+    web:
+      exposure:
+        include:
+          - "*"
+  health:
+    readinessstate:
+      enabled: true
+    livenessstate:
+      enabled: true
+  endpoint:
+    health:
+      probes:
+        enabled: true
+ 
+
 encrypt:
   key: "NtvtU5n16yWkk03a0T3rqA=="
-
 
 server:
   port: 8071
