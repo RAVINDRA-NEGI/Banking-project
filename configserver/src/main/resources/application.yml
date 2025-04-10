@@ -9,8 +9,6 @@ spring:
       server:
         git:
           uri: https://github.com/RAVINDRA-NEGI/bank-config.git
-          username: RAVINDRA-NEGI
-          password: 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
           default-label: main
           timeout: 5
           clone-on-start: true 
