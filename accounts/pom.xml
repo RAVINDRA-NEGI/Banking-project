@@ -5,7 +5,7 @@
 	<parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
-		<version>3.4.3</version>
+		<version>3.4.4</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.raz</groupId>
@@ -89,7 +89,6 @@
 		<dependency>
 		    <groupId>org.springframework.cloud</groupId>
 		    <artifactId>spring-cloud-starter-bus-amqp</artifactId>
-		    <version>4.2.1</version>
 		</dependency>
 	</dependencies>
 
@@ -125,7 +124,7 @@
 		        <version>3.4.5</version>
 		        <configuration>
 		          <to>
-		            <image>raznegi69/${project.artifactId}:s4</image>
+		            <image>raznegi69/${project.artifactId}:v2</image>
 		          </to>
 		        </configuration>
 		      </plugin>
