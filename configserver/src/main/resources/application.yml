@@ -8,19 +8,11 @@ spring:
     config:
       server:
         git:
-          uri: https://github.com/RAVINDRA-NEGI/bank-config.git
-          username: RAVINDRA-NEGI
-          password: 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
+          uri: git@github.com:RAVINDRA-NEGI/bank-config.git 
           default-label: main
           timeout: 5
           clone-on-start: true 
           force-pull: true
-  rabbitmq:
-    host: "localhost"
-    port: 5672
-    username: "guest"
-    password: "guest"
-
 management:
   endpoints:
     web:

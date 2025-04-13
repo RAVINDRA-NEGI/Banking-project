@@ -78,15 +78,15 @@
 			<groupId>org.springframework.cloud</groupId>
 			<artifactId>spring-cloud-starter-config</artifactId>
 		</dependency>
-		 	<!-- https://mvnrepository.com/artifact/org.springframework.cloud/spring-cloud-starter-bus-amqp -->
-			<dependency>
-			    <groupId>org.springframework.cloud</groupId>
-			    <artifactId>spring-cloud-starter-bus-amqp</artifactId>
-			</dependency>
+
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-configuration-processor</artifactId>
 			<optional>true</optional>
+		</dependency>
+				<dependency>
+			<groupId>org.springframework.cloud</groupId>
+			<artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>
 		</dependency>
 	</dependencies>
 
@@ -122,7 +122,7 @@
 		        <version>3.4.5</version>
 		        <configuration>
 		          <to>
-		            <image>raznegi69/${project.artifactId}:v2</image>
+		            <image>raznegi69/${project.artifactId}:v3</image>
 		          </to>
 		        </configuration>
 		      </plugin>

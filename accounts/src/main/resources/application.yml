@@ -1,3 +1,5 @@
+server:
+  port: 8080
 spring:
    application:
     name: "accounts"
@@ -5,7 +7,7 @@ spring:
     active:
     - "prod"
    datasource:
-    url: jdbc:mysql://host.docker.internal:3306/accounts
+    url: jdbc:mysql://localhost:3306/accounts
     username: root
     password: chutiya22
     driver-class-name: com.mysql.cj.jdbc.Driver
@@ -19,14 +21,30 @@ spring:
    config:
     import:
     - "optional:configserver:http://localhost:8071/"
-   rabbitmq:
-    host: "localhost"
-    username: "guest"
-    password: "guest"
-
 management:
   endpoints:
     web:
       exposure:
         include:
         - "*"
+  endpoint:
+    shutdown:
+      access: unrestricted
+  info:
+    env:
+      enabled: true
+
+eureka:
+  instance:
+    prefer-ip-address: true
+  client:
+    fetch-registry: true
+    register-with-eureka: true
+    service-url:
+      defaultZone: http://localhost:8070/eureka/
+
+info:
+  app:
+    name: "accounts"
+    description: "Bank Accounts Application"
+    version: "1.0.0"
