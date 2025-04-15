@@ -1,7 +1,7 @@
 services:
   network-deploy-service:
     networks:
-      - eazybank
+      - raznegi69
 
   microservice-base-config:
     extends:

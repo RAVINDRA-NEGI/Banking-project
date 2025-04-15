@@ -50,7 +50,7 @@ public class AccountController {
 		this.iAccountService=iAccountService;
 	}
 	
-	@Value("${build.version}")
+	@Value("${info.app.version}")
 	private String buildVersion;
 	
 	@Autowired

@@ -9,7 +9,8 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.Pattern;
 
-
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.env.Environment;
@@ -27,6 +28,7 @@ import com.raz.cards.dto.ErrorResponseDto;
 import com.raz.cards.dto.ResponseDto;
 import com.raz.cards.service.ICardsService;
 
+
 /**
  * @author Raj negi
  */
@@ -41,6 +43,8 @@ import com.raz.cards.service.ICardsService;
 @Validated
 public class CardsController {
 
+	private static final Logger logger = LoggerFactory.getLogger(CardsController.class);
+	
     private final ICardsService iCardsService;
     
     public CardsController(ICardsService iCardsService) {
@@ -103,9 +107,12 @@ public class CardsController {
             )
     })
     @GetMapping("/fetch")
-    public ResponseEntity<CardsDto> fetchCardDetails(@RequestParam
-                                                               @Pattern(regexp="(^$|[0-9]{10})",message = "Mobile number must be 10 digits")
-                                                               String mobileNumber) {
+    public ResponseEntity<CardsDto> fetchCardDetails(@RequestHeader("bank-correlation-id")
+										String correlationId,
+										@RequestParam
+									    @Pattern(regexp="(^$|[0-9]{10})",message = "Mobile number must be 10 digits")
+									    String mobileNumber) {
+    	logger.debug("bank-correlation-id found: {}",correlationId);
         CardsDto cardsDto = iCardsService.fetchCard(mobileNumber);
         return ResponseEntity.status(HttpStatus.OK).body(cardsDto);
     }
