@@ -1,6 +1,6 @@
 services:
   configserver:
-    image: "raznegi69/configserver:v3"
+    image: "raznegi69/configserver:v4"
     container_name: configserver-ms
     ports:
       - "8071:8071"
@@ -17,7 +17,7 @@ services:
       - raznegi69
 
   eurekaserver:
-    image: "raznegi69/eurekaserver:v3"
+    image: "raznegi69/eurekaserver:v4"
     container_name: eurekaserver-ms
     ports:
       - "8070:8070"
@@ -39,7 +39,7 @@ services:
       - raznegi69
 
   accounts:
-    image: "raznegi69/accounts:v3"
+    image: "raznegi69/accounts:v4"
     container_name: accounts-ms
     ports:
       - "8080:8080"
@@ -64,7 +64,7 @@ services:
       - raznegi69
 
   loans:
-    image: "raznegi69/loans:v3"
+    image: "raznegi69/loans:v4"
     container_name: loans-ms
     ports:
       - "8090:8090"
@@ -89,7 +89,7 @@ services:
       - raznegi69
 
   cards:
-    image: "raznegi69/cards:v3"
+    image: "raznegi69/cards:v4"
     container_name: cards-ms
     ports:
       - "9000:9000"
