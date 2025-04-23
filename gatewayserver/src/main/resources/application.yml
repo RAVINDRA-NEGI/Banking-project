@@ -11,6 +11,10 @@ spring:
         locator:
           enabled: false
           lowerCaseServiceId: true
+      httpclient:
+        connect-timeout: 1000
+        response-timeout: 3s
+
 management:
   endpoints:
     web:
@@ -37,3 +41,15 @@ logging:
     com:
       raz:
         gatewayserver: DEBUG
+
+
+resilience4j:
+  circuitbreaker:
+    configs:
+      default:
+        sliding-window-size: 10
+        permittedNumberOfCallsInHalfOpenState: 2
+        failure-rate-threshold: 50
+        wait-duration-in-open-state: 10000
+
+      
