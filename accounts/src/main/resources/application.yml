@@ -45,6 +45,9 @@ management:
   info:
     env:
       enabled: true
+  metrics:
+    tags:
+      applications: ${spring.application.name}
 
 eureka:
   instance:
