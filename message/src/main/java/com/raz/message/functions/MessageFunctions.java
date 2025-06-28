@@ -27,8 +27,8 @@ public class MessageFunctions {
 	@Bean
 	public Function<AccountMsgDto, Long> sms(){
 		return accountMsgDto ->{
-			log.info("Sending sms with the details: " + accountMsgDto.toString());
-			return accountMsgDto.accountNumer();
+			log.info("Sending SMS with the details: " + accountMsgDto.toString());
+			return accountMsgDto.accountNumber();
 		};
 	}
 

@@ -3,9 +3,15 @@ package com.raz.accounts.service.impl;
 
 import java.util.Optional;
 import java.util.Random;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.cloud.stream.function.StreamBridge;
+import org.springframework.cloud.stream.function.StreamBridge;
 import org.springframework.stereotype.Service;
 import com.raz.accounts.constants.AccountsConstants;
 import com.raz.accounts.dto.AccountsDto;
+import com.raz.accounts.dto.AccountsMsgDto;
 import com.raz.accounts.dto.CustomerDto;
 import com.raz.accounts.entity.Accounts;
 import com.raz.accounts.entity.Customer;
@@ -23,9 +29,11 @@ import lombok.AllArgsConstructor;
 @AllArgsConstructor
 public class AccountServiceImpl implements IAccountService{
 	
+	
+	private static final Logger log = LoggerFactory.getLogger(AccountServiceImpl.class);
 	private final AccountsRepository accountRepo;
 	private final CustomerRepository customerRepo;
-	
+	private final StreamBridge streamBridge;
 
 	@Override
 	public void createAccount(CustomerDto customerDto) {
@@ -37,7 +45,15 @@ public class AccountServiceImpl implements IAccountService{
 	    }
 		Customer savedCustomer  = customerRepo.save(customer);
 		
-		accountRepo.save(createNewAccount(savedCustomer));
+		Accounts savedAccount = accountRepo.save(createNewAccount(savedCustomer));
+		sendCommunication(savedAccount, savedCustomer);
+	}
+	private void sendCommunication(Accounts account , Customer customer) {
+		var accountMsgDto = new AccountsMsgDto(account.getAccountNumber(),customer.getCustomerName(),
+				customer.getCustomerEmail(),customer.getCustomerMobileNumber());
+		log.info("Sending Communication request for the details: {}" , accountMsgDto);
+		var result = streamBridge.send("sendCommunication-out-0", accountMsgDto);
+		log.info("Is the Communication request successfully processed? : {}" , result);
 	}
 	
 	private Accounts createNewAccount(Customer customer) {
@@ -96,6 +112,18 @@ public class AccountServiceImpl implements IAccountService{
 			accountRepo.deleteByCustomerId(customer.getCustomerId());
 			customerRepo.deleteById(customer.getCustomerId());
 		return false;
+	}
+	@Override
+	public boolean updateCommunicationStatus(Long accountNumber) {
+		boolean isUpdated = false;
+		if(accountNumber != null) {
+			Accounts accounts = accountRepo.findById(accountNumber).orElseThrow(
+					() -> new ResourceNotFoundException("Account", "AccountNumber", accountNumber.toString())
+							);
+			accounts.setCommunicationSw(true);
+			accountRepo.save(accounts);
+		}
+		return isUpdated;
 	}
 	
 }
